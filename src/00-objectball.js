@@ -130,3 +130,74 @@ function homeTeamName(){
     return object["home"]["teamName"];
 }
 console.log(homeTeamName());
+
+// Points scored by a player
+function numPointScored(playerName){
+    const game= gameObject();
+
+    for(let teamKey in game){
+        const team = game[teamKey];
+        const players = team.players;
+
+    for(let name in players){
+        if(name ===playerName){
+            return players[name].points;
+        }
+    }
+
+    }
+return "player not found"
+
+}
+console.log(numPointScored("Ben Gordon"));
+
+//Building shoeSize Function
+function shoeSize(playerName) {
+    const game = gameObject();
+
+    for (let teamKey in game) {
+        const team = game[teamKey];
+        const players = team.players;
+
+        for (let name in players) {
+            if (name === playerName) {
+                return players[name].shoes;
+            }
+        }
+    }
+
+    return "Player not found";
+}
+console.log(shoeSize("Mason Plumlee"));
+
+// Building teamColors function
+function teamColors(teamName) {
+    const game = gameObject();
+
+    for (let teamKey in game) {
+        const team = game[teamKey];
+
+        if (team.teamName === teamName) {
+            return team.colors;
+        }
+    }
+
+    return "Team not found";
+}
+console.log(teamColors("Charlotte Hornets"));
+
+// Building teamNames  function
+function teamNames() {
+    const game = gameObject();
+    const names = [];
+
+    for (let teamKey in game) {
+        names.push(game[teamKey].teamName);
+    }
+
+    return names;
+}
+console.log(teamNames());
+
+//
+
