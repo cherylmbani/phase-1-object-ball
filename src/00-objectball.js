@@ -133,23 +133,24 @@ console.log(homeTeamName());
 
 // Points scored by a player
 function numPointScored(playerName){
-    const game= gameObject();
+    const game= gameObject(); // this gets the object and assigns it to the variable game
 
-    for(let teamKey in game){
-        const team = game[teamKey];
-        const players = team.players;
+    for(let teamKey in game){ // this loops through home and away keys
+        const team = game[teamKey]; //This retrieves the whole team, either home or away
+        const players = team.players; // This retrieves the players specifically from the team
 
-    for(let name in players){
-        if(name ===playerName){
-            return players[name].points;
+    for(let name in players){ //this loops through players now that we have retrieved it
+        if(name ===playerName){ // condition. Is the player name the same name we are looking for
+            return players[name].points;// if the condition is true, then return the player name and the points
         }
     }
 
     }
-return "player not found"
+    return "player not found"
 
 }
 console.log(numPointScored("Ben Gordon"));
+
 
 //Building shoeSize Function
 function shoeSize(playerName) {
@@ -158,7 +159,7 @@ function shoeSize(playerName) {
     for (let teamKey in game) {
         const team = game[teamKey];
         const players = team.players;
-
+        
         for (let name in players) {
             if (name === playerName) {
                 return players[name].shoes;
@@ -170,34 +171,80 @@ function shoeSize(playerName) {
 }
 console.log(shoeSize("Mason Plumlee"));
 
+
 // Building teamColors function
 function teamColors(teamName) {
-    const game = gameObject();
+    const game = gameObject(); // this calls the gameObject function
 
-    for (let teamKey in game) {
-        const team = game[teamKey];
+    for(let teamKey in game){ // Lopps  through every team
+        const team=game[teamKey];// gets the team object and store it in the variable, team 
 
-        if (team.teamName === teamName) {
+        if(team.teamName ===teamName){
             return team.colors;
         }
     }
-
     return "Team not found";
-}
+}    
+
 console.log(teamColors("Charlotte Hornets"));
 
-// Building teamNames  function
-function teamNames() {
-    const game = gameObject();
-    const names = [];
 
-    for (let teamKey in game) {
-        names.push(game[teamKey].teamName);
+
+// Building teamNames  function
+function teamNames() { // not told that it takes in an argument. 
+    const game = gameObject(); //calls the gameObject function, retrieves all its data to be used in this new function. The objects stored in a variable, game.
+    const names = []; // create an empty arrays to store the team names.
+
+    for (let teamKey in game) { // loops over the two teams, home and away.
+        names.push(game[teamKey].teamName); // game[teamKey] retrieves the team objects, .teamName gets the specific name of the team, name.push adds the name of the team to the name arrays created earlier/
     }
 
     return names;
 }
 console.log(teamNames());
 
+
+
+
 //
+function playerNumbers(teamName){
+    const game=gameObject();
+    const arr = [];
+
+    for(let teamKey in game){
+         const team = game[teamKey]
+
+        if(team.teamName ===teamName){
+            for(let player in team.players){
+                arr.push(team.players[player].number);
+        }
+    }
+    
+    
+
+    }
+    return arr;
+
+}
+console.log(playerNumbers("Charlotte Hornets"));
+
+//
+function playerStats(playerName){
+    const game = gameObject(); // wes call the previous function and store it in game variable.
+    const obj={}; // create an empty object to return stats of a player to.
+
+    for(let teamKey in game){ // Loop through all the teams
+        const team = game[teamKey]; // now store the teams in the variable team
+        const players = team.players;// access the p;layers in the teams
+        
+        for(let player in players){ // now we loop through each player in the players we have accessed.
+            if(player === playerName){ // if we get a playerName that matches the name
+            return players[player]; // then return the player
+        }
+         }
+    }
+    return {};
+}
+console.log(playerStats("Ben Gordon"));
+
 
