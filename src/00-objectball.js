@@ -206,7 +206,7 @@ console.log(teamNames());
 
 
 
-//
+//Function teamNames
 function playerNumbers(teamName){
     const game=gameObject();
     const arr = [];
@@ -228,7 +228,7 @@ function playerNumbers(teamName){
 }
 console.log(playerNumbers("Charlotte Hornets"));
 
-//
+// function playerNumbers
 function playerStats(playerName){
     const game = gameObject(); // wes call the previous function and store it in game variable.
     const obj={}; // create an empty object to return stats of a player to.
@@ -247,4 +247,35 @@ function playerStats(playerName){
 }
 console.log(playerStats("Ben Gordon"));
 
+
+// function playerStats
+function bigShoeRebounds(){
+    const game = gameObject();
+    let biggestShoeSize = 0;
+    let biggestShoePlayerStats =null;
+
+    for (let teamKey in game){ //Goes through each team in the object. We have two teams, home and away
+        const team = game[teamKey];
+        const players = team.players;
+        
+        for (let playerName in players){
+            // find the player with the largest shoesize
+            const playerStats = players[playerName]; 
+            
+            if(playerStats.shoe>biggestShoeSize){
+                biggestShoeSize = playerStats.shoe;
+                biggestShoePlayerStats= playerStats;
+            }
+
+        
+        }
+    
+    } 
+    if (biggestShoePlayerStats === null) {
+        console.log("No player found with a shoe size!");
+        return null;
+    }
+    return biggestShoePlayerStats.rebounds;
+}
+console.log(`${playerName} | Shoe size: ${playerStats.shoe} | Rebounds: ${playerStats.rebounds}`);
 
